@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="../css/pp.css"/>
+</head>
+<body>
+    <form id="prihord" method="POST">
+        <label for="ndoc">Платежное поручение №:</label>
+        <input type="text"  name="ndoc" th:value="${doclist.ndoc}" id="ndoc" placeholder="№"/>
+
+        <label for="dat">Дата</label>
+        <input type="text" name="dat" id="dat" placeholder="Дата" th:value="${doclist.dat}"/>
+
+    <!--       <label for="vidplat">Вид платежа</label>
+        <input type="text" name="vidplat" id="vidplat" placeholder="Вид платежа" />
+
+        <br/>
+        <br/>
+
+      <label for="sprop">Сумма прописью</label>
+        <input type="text" name="sprop" id="sprop" placeholder="Сумма прописью" />
+ -->
+        <label for="pr_sum">Сумма</label>
+        <input type="text" name="s" id="s" placeholder="Сумма" th:value="${doclist.s}" />
+       
+        <br/>
+              <textarea class="ta1" name="sprop" id="sprop" placeholder="Сумма просипью" th:text="${doclist.sprop}" />
+        <br/>
+        <table border="1">
+          <thead>
+            <td>Плательщик</td>
+          </thead>
+          
+          <tbody>
+            <tr> 
+             <td>
+               <table>
+               	<tbody>
+               		<tr>
+          			     <td>
+                  			 <label for="innpl">ИНН</label>
+                   		     <input type="text" name="innpl" th:value="${doclist.innpl}" id="innpl" placeholder="ИНН" />
+                		 </td>
+
+               			 <td>
+                    		 <label for="kpppl">КПП</label>
+                   			 <input type="text" name="kpppl"  id="kpppl" placeholder="КПП" />               
+               			 </td>
+               		</tr>
+               	</tbody>
+               </table>
+               </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <textarea class="ta2" name="nampl" id="nampl" placeholder="Плательщик" rows="5" th:text="${doclist.nampl}" />
+                </td>
+                <td>
+                    <label for="rschpl">Сч. №</label>
+                    <input type="text" name="rschpl" th:value="${doclist.rschpl}" id="rschpl" placeholder="Сч. №" />
+                </td>
+            </tr>
+          </tbody>
+        </table>
+
+
+
+        
+
+        <br/>
+        
+       
+        <table border="1">
+        <thead>
+        <td>Банк плательщика</td>
+        </thead>
+          <tbody>
+           <tr>
+           <td>
+            <textarea class="ta2" name="bpl_txt" id="bpl_txt" placeholder="Банк плательщика" rows="5" th:text="${doclist.bpl_txt}" />
+           </td> 
+
+          <td>
+              <table>
+              <tbody>
+                 <tr>
+                 	<td> 
+                 	     <label for="bpl">БИК</label>
+                         <input type="text" name="bpl" th:value="${doclist.bpl}" id="bpl" placeholder="БИК" />
+                    </td>
+                 </tr>   
+                 
+                 <tr>
+                    <td>
+                         <label for="kschpl">Сч. №</label>
+                         <input type="text" name="kschpl" th:value="${doclist.kschpl}" id="kschpl" placeholder="Сч. №" />
+                    </td>
+                 </tr>
+                 
+                  </tbody>
+              </table>  
+              </td>
+          </tr>
+            </tbody>
+        </table>
+        
+        
+        
+        <table border="1">
+        <thead>
+        <td>Банк получателя</td>
+        </thead>
+          <tbody>
+           <tr>
+           <td>
+            <textarea class="ta2" name="bpol_txt" id="bpol_txt" placeholder="Банк плательщика" rows="5" th:text="${doclist.bpol_txt}" />
+           </td> 
+          
+        
+          <td>
+              <table>
+              <tbody>
+                 <tr>
+                 	<td> 
+                 	   <label for="bpol">БИК</label>
+                       <input type="text" name="bpol" th:value="${doclist.bpol}" id="bpol" placeholder="БИК" />
+                    </td>
+                 </tr>   
+                 
+                 <tr>
+                    <td>
+        		       <label for="kschpol">Сч. №</label>
+       				   <input type="text" name="kschpol" th:value="${doclist.kschpol}" id="kschpol" placeholder="Сч. №" />
+                    </td>
+                 </tr>
+                 
+                  </tbody>
+              </table>  
+              </td>
+          </tr>
+            </tbody>
+        </table>
+                
+
+
+        
+        <br/>
+
+
+
+        <table border="1">
+          <thead>
+            <td>Получатель</td>
+          </thead>
+          
+          <tbody>
+            <tr> 
+             <td>
+               <table>
+               	<tbody>
+               		<tr>
+          			     <td>
+                  			 <label for="innpol">ИНН</label>
+                   		     <input type="text" name="innpol" th:value="${doclist.innpol}" id="innpol" placeholder="ИНН" />
+                		 </td>
+
+               			 <td>
+                    		 <label for="kpppol">КПП</label>
+                   			 <input type="text" name="kpppol"  id="kpppol" placeholder="КПП" />               
+               			 </td>
+               		</tr>
+               	</tbody>
+               </table>
+               </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <textarea class="ta2" name="nampol" id="nampol" placeholder="Получатель" rows="5" th:text="${doclist.nampol}" />
+                </td>
+                <td>
+                    <label for="rschpol">Сч. №</label>
+                    <input type="text" name="rschpol" th:value="${doclist.rschpol}" id="rschpl" placeholder="Сч. №" />
+                </td>
+            </tr>
+          </tbody>
+        </table>
+ 
+        <textarea class="ta1" name="osn" id="osn" th:text="${doclist.osn}" />
+
+
+
+    </form>
+</body>
+</html>

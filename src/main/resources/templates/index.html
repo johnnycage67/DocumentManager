@@ -1,0 +1,220 @@
+<html layout:decorator="layout" xmlns="http://www.w3.org/1999/html" xmlns:form="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml" xmlns:layout="http://www.w3.org/1999/xhtml">
+
+<div layout:fragment="content">
+
+<div class="container">
+
+
+    <div class="jumbotron">
+        <div class="container">
+            <div class="shadow">
+
+                <div class="modal fade" id="loader">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div id="fountainG">
+                                    <div id="fountainG_1" class="fountainG"></div>
+                                    <div id="fountainG_2" class="fountainG"></div>
+                                    <div id="fountainG_3" class="fountainG"></div>
+                                    <div id="fountainG_4" class="fountainG"></div>
+                                    <div id="fountainG_5" class="fountainG"></div>
+                                    <div id="fountainG_6" class="fountainG"></div>
+                                    <div id="fountainG_7" class="fountainG"></div>
+                                    <div id="fountainG_8" class="fountainG"></div>
+                                </div>
+                                 <h2 class="zag_docs">Загрузка данных</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <br/>
+                <script>
+
+
+
+
+                    var form123;
+                    var ajaxUrl123='test/';
+                    $(document).ready(function(){
+                        form123 = $(".form-inline");
+                        form123.submit(function(){
+                            $('#loader').modal('show');
+
+                            updateTable123();
+                            return false;
+                        });
+                    });
+
+
+
+                    function updateTable123() {
+                        $.ajax({
+                            type: "POST",
+                            url: ajaxUrl123,//+ 'filter',
+                            data: $('.form-inline').serialize(),
+                            success: updateTableByData123
+                        });
+                        return false;
+                    }
+
+                    function updateTableByData123(data) {
+
+                          datatableApi.clear().draw();
+                          datatableApi.rows.add(data); // Add new data
+                          datatableApi.columns.adjust().draw();
+
+
+                      //datatableApi.clear().rows.add(data).draw();
+
+                        $('#loader').modal('hide');
+                    }
+
+
+
+                </script>
+
+
+                <div class="row">
+                    <form class="form-inline" id="123">
+                        <div class="form-group">
+
+
+                                <input name="itIsMine" id="check1" type="checkbox" value="true" checked="checked"/>
+                                <label for="check1">Свои</label>
+
+
+
+                            <select class="combobox form-control" name="type_doc">
+                                <option value="" disabled="true" selected="selected">Выберите тип документа</option>
+                                <option th:each="n : ${docType}" th:value="${n.id}" th:text="${n.name}"/>
+                            </select>
+                            <button class="btn btn-default" type="submit">Показать</button>
+                        </div>
+                    </form>
+                </div>
+
+
+                <br/>
+
+        <form method="post" class="form-horizontal" role="form" id="filter">
+                    <div class="row">
+                        <div class='col-sm-6'>
+                            <div class="form-group">
+                                <div class='input-group date' id='datetimepicker1'>
+                                    <input type='text' class="form-control" name="startDate" id="startDate" />
+                                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class='col-sm-6'>
+                            <div class="form-group">
+                                <div class='input-group date' id='datetimepicker2'>
+                                    <input type='text' class="form-control" name="endDate" id='endDate' />
+                                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <script type="text/javascript">
+                            $(function () {
+                                $('#datetimepicker1').datetimepicker({
+                                    format: "YYYY-MM-DD",
+                                    locale: 'ru'
+
+                                });
+
+                                $('#datetimepicker2').datetimepicker({
+                                    format: "YYYY-MM-DD",
+                                    locale: 'ru'
+
+                                });
+
+                            });
+                        </script>
+                        <button type="submit" class="btn btn-primary pull-right">Фильтр</button>
+                    </div>
+
+
+
+        </form>
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+    <table style="width: 45%; margin: 0 auto 2em auto;" cellspacing="0" cellpadding="3" border="0">
+        <thead>
+        <tr>
+            <th>Target</th>
+            <th>Search text</th>
+            <th>Treat as regex</th>
+            <th>Use smart search</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr id="filter_col4" data-column="3">
+            <td>4-ый столбец</td>
+            <td align="center"><input class="column_filter" id="col3_filter" type="text"/></td>
+            <td align="center"><input class="column_filter" id="col3_regex" type="checkbox"/></td>
+            <td align="center"><input class="column_filter" id="col3_smart" checked="checked" type="checkbox"/></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <table id="datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">  <!---table table-striped display-->
+        <thead>
+        <tr>
+            <th class="site_name">№</th>
+            <th>Дата создания</th>
+            <th>Описание</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tfoot>
+        <tr>
+            <th>№</th>
+            <th>Дата создания</th>
+            <th>Описание</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        </tfoot>
+    </table>
+
+
+</div>
+
+
+
+
+    <script src="webjars/noty/2.3.8/js/noty/packaged/jquery.noty.packaged.min.js"></script>
+    <script src="js/docDatatables.js"></script>
+    <script src="js/datatablesUtil.js"></script>
+
+
+
+
+
+</div>
+
+</html>
+

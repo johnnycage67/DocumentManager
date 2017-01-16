@@ -1,0 +1,641 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
+<!-- 2017-01-16T12:11:38 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PlatPor" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2130d9bb-1838-445c-8275-2102577ff7c6">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="OracleAdapter"/>
+	<parameter name="id_doc" class="java.lang.Long"/>
+	<queryString>
+		<![CDATA[SELECT NDOC,DAT,S, 
+								NAMPL,BPL,BPL_TXT,KSCHPL,RSCHPL, 
+								NAMPOL,BPOL,BPOL_TXT, 
+						--DECODE(:HAVE_KSCH, 1, KSCHPOL, '') KSCHPOL,
+						--DECODE(:HAVE_RSCH, 1, RSCHPOL, '') RSCHPOL,
+								VIDPLAT,VOPL,NAZN,KOD, 
+								SROK,OCHER,USLOPL,INNPL, 
+						--skl.firm_kpp_by_id(KPL) 
+								DECODE (KPPPL2,NULL,KPPPL,KPPPL2)  KPPPL,KPPPL2,
+						--skl.firm_kpp_by_id(KPL) KPPPL,
+								skl.firm_kpp_by_id(KPOL) KPPPOL,INNPOL,SKL.SPROP(S, val) SP,SKL.PR_SUM(S) SPP,OSN,
+								F101, F104, F105, F106, F107, F108, F109, F110
+						FROM (SELECT T.*, skl.firm_kpp_by_id(T.KPL) KPPPL
+  							  FROM SKL.V$PL_POR_OKI_OPLAT T
+						
+						WHERE  ID = $P!{id_doc})]]>
+	</queryString>
+	<field name="nampl" class="java.lang.String"/>
+	<field name="bpl_txt" class="java.lang.String"/>
+	<field name="ndoc" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sp" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nampol" class="java.lang.String"/>
+	<field name="bpol_txt" class="java.lang.String"/>
+	<field name="osn" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="699" splitType="Stretch">
+			<textField>
+				<reportElement x="149" y="50" width="80" height="31" uuid="2b46948c-2475-4f6c-bfda-e7fcf0f8f1f7"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ndoc}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="-2" y="50" width="151" height="30" uuid="b84b2acc-84ce-4e58-ba63-6d20d9323fbe"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<text><![CDATA[ПЛАТЕЖНОЕ ПОРУЧЕНИЕ № 
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-1" y="90" width="81" height="40" uuid="a460b2d5-15e4-460f-bad5-88d615254906"/>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<text><![CDATA[Сумма
+прописью
+]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="80" y="90" width="473" height="40" uuid="4a7cd0a4-425f-4026-8e49-ede201dbfc32"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sp}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="330" width="181" height="20" uuid="63929761-51ac-4778-930f-d471a6585ab1"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<text><![CDATA[ ИНН]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="150" width="381" height="60" uuid="9ce83b09-d46b-4b26-909a-1ffe446f0ba0"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nampl}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="190" width="100" height="20" uuid="c2e35bd6-de93-49bb-a294-9d1aed927b4e"/>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<text><![CDATA[Плательщик]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="210" width="381" height="60" uuid="7b26f8a6-f48c-4c67-a285-5fbe61c6c584"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bpl_txt}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="250" width="100" height="20" uuid="e3790026-2766-4a8f-b6cb-7dd44d516ad5"/>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<text><![CDATA[Банк плательщика]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="-1" y="350" width="381" height="80" uuid="f2ba2e33-c2b3-4fb4-9a4b-e5a94e83b549"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nampol}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="410" width="100" height="20" uuid="7740daa2-9d0f-479a-a20c-10e53bff396f"/>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<text><![CDATA[Получатель]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="270" width="381" height="60" uuid="bd0fec45-c0e0-40e9-9e4f-4a03cf5fa700"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bpol_txt}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="310" width="100" height="20" uuid="069b63b2-f0f9-4dc2-90cd-5ab5f34fa475"/>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<text><![CDATA[Банк получателя]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="2" y="450" width="551" height="60" uuid="6cdcb665-1fe7-4880-b445-8618dc7d484d"/>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{osn}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="393" y="530" width="100" height="30" uuid="b87a7939-5811-4ad5-8666-4f48e1ea670e"/>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<text><![CDATA[Отметки банка]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="233" y="530" width="60" height="30" uuid="c3eeeaaf-69a4-44fc-8aa0-c00d9423ec0d"/>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<text><![CDATA[Подписи]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="123" y="580" width="60" height="21" uuid="b3c35af6-0ba1-4bd1-b55d-dabf00bc4ae3"/>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<text><![CDATA[М.П.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="510" width="551" height="20" uuid="85ababc5-df46-49b0-a379-cff56ef8aaf3"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<text><![CDATA[Назначение платежа]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="183" y="590" width="171" height="41" uuid="433df9d8-485b-4001-b3de-fe41b55aef79"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="181" y="330" width="199" height="20" uuid="3f228253-9a58-4c74-af48-c52cc990e7e7"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<text><![CDATA[ КПП]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="381" y="130" width="51" height="40" uuid="2d44b086-4426-494b-868b-6bd509ec23b4"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<text><![CDATA[Сумма]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="381" y="170" width="51" height="40" uuid="11849907-3aa6-481f-8584-4f4fdb51d87d"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<text><![CDATA[Сч. №]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="230" width="51" height="40" uuid="42916b65-7fa6-4339-a3ae-7c8b61fb9bb6"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<text><![CDATA[Сч. №]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="290" width="51" height="40" uuid="a0c83bdd-c02e-42bb-aead-8eea04d3587a"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<text><![CDATA[Сч. №]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="330" width="51" height="40" uuid="51b4bf15-b4e1-4711-9bdf-c045b0a663d3"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<text><![CDATA[Сч. №]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="130" width="201" height="20" uuid="5e0a8016-5477-4a2e-85a0-3f5c54265b70"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<text><![CDATA[ КПП]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-1" y="130" width="181" height="20" uuid="8caf5f36-0a95-4c0d-aff1-b51e14f92caf"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<text><![CDATA[ ИНН]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="381" y="210" width="51" height="20" uuid="975f9dc5-aff4-4711-93a7-5f38f6787630"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<text><![CDATA[БИК]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="381" y="270" width="51" height="20" uuid="07478dca-d5af-4ed1-8864-db5a17f4495d"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<text><![CDATA[БИК]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-1" y="20" width="111" height="20" uuid="f576f82a-b30c-4ec1-936c-329144bf8136"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<text><![CDATA[Поступ. в банк плат.
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="118" y="20" width="111" height="20" uuid="3bd2e0b2-5c39-42e0-a519-a86e82fd4197"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<text><![CDATA[Списано со сч. плат.
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="500" y="0" width="55" height="20" uuid="c7a98c23-7bf2-4032-8f68-72fef6a0f1c1"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<text><![CDATA[0401060
+]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="431" y="130" width="124" height="40" uuid="cb163879-a844-4239-8d3d-1ba48ccf7311"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{bpol_txt}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="431" y="170" width="124" height="40" uuid="6b0f57c0-a2a0-42c0-b0cb-ff70dad74d7b"/>
+				<textFieldExpression><![CDATA[$F{bpol_txt}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="429" y="210" width="124" height="20" uuid="1b18ff27-ac05-418b-a4fe-1362654ed951"/>
+				<textFieldExpression><![CDATA[$F{bpol_txt}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="431" y="230" width="124" height="40" uuid="ceb01eec-9bff-4826-adf4-83db6b99c263"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{bpol_txt}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="431" y="270" width="124" height="20" uuid="0b9cecdb-777a-4e94-bdce-ece8f23a6de1"/>
+				<textFieldExpression><![CDATA[$F{bpol_txt}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="430" y="290" width="124" height="40" uuid="3e71329a-7b8c-4159-aed0-5cfc45c5a987"/>
+				<textFieldExpression><![CDATA[$F{bpol_txt}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="430" y="330" width="124" height="40" uuid="647fced8-326f-4187-b642-a03434e13e84"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{bpol_txt}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="380" y="370" width="51" height="20" uuid="89012a6e-5bac-4f57-bbc5-5214200b17bf"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<text><![CDATA[БИК]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="390" width="51" height="20" uuid="23e7faed-029b-4f20-8a26-4d3a584fc141"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<text><![CDATA[БИК]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="410" width="51" height="20" uuid="b640c342-186b-4bf7-8fbe-191f8b314b1a"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<text><![CDATA[БИК]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="480" y="370" width="51" height="20" uuid="2245c5bd-7d4e-4e31-ac92-59613a359d2f"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<text><![CDATA[БИК]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="480" y="390" width="51" height="20" uuid="6bca0957-1bfb-445a-abb2-380ae1613941"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<text><![CDATA[БИК]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="-2" y="430" width="152" height="20" uuid="ae9ffffe-6376-4e4d-be46-b82fd2681099"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{bpol_txt}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="150" y="430" width="82" height="20" uuid="7eae0ea2-4cfe-41d6-b818-1393331eeb7c"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{bpol_txt}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="230" y="430" width="30" height="20" uuid="ffb821d8-29cc-4cf0-8183-de6ccfe6bea0"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{bpol_txt}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="260" y="430" width="82" height="20" uuid="c8350da3-96ad-40b3-bdea-09f41dff180c"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{bpol_txt}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="342" y="430" width="82" height="20" uuid="deaf08fb-94f0-497f-af9e-a4af20a16055"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{bpol_txt}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="424" y="430" width="96" height="20" uuid="27d277cd-d2b6-40b1-b342-c7059d1ba07d"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{bpol_txt}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="520" y="430" width="35" height="20" uuid="a1452c45-1647-49cd-b76a-51ce5858b9af"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{bpol_txt}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="40" width="74" height="21" uuid="1eb5b20a-8712-4f68-a85c-8a9fd086797f"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{bpol_txt}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="380" y="40" width="90" height="21" uuid="5e7a905d-68e6-40b4-9ad4-a1d3aa8e1ead"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{bpol_txt}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="520" y="30" width="24" height="20" uuid="0afbcd58-a405-4231-a976-de81c50e3a36"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="60" width="74" height="20" uuid="bf09ccd8-1f88-464a-9a61-90db4ed9d394"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Дата]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="60" width="90" height="20" uuid="b22f5080-f145-44c1-aa75-55a114f0e6e5"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Вид платежа]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

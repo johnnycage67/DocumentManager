@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Складской приходный ордер</title>
+</head>
+<body>
+
+<form id="prihord" method="POST">
+
+
+    <table>
+        <tbody>
+
+        <tr>
+            <td>
+                <label for="ndoc">Приходный ордер №:</label>
+                <input type="text" name="ndoc" id="ndoc" placeholder="Имя пользователя"/>
+            </td>
+            <td>
+                <label for="dat">Дата</label>
+                <input type="text" name="dat" id="dat" placeholder="Дата"/>
+            </td>
+            <td>
+                <label for="ns">Склад</label>
+                <input type="text" name="ns" id="ns" placeholder="Склад"/>
+            </td>
+            <td>
+                <label for="type_doc">Тип док-та</label>
+                <input type="text" name="type_doc" id="type_doc"/>
+            </td>
+            <td>
+                <label for="otkl">Откл.</label>
+                <input type="text" name="otkl" id="otkl"/>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <label for="firm_post">Поставщик</label>
+                <input type="text" name="firm_post" id="firm_post"/>
+                <input type="text" name="firm_post_txt" id="firm_post_txt"/>
+            </td>
+            <td>
+                <label for="nsdoc">№ Сч/ф, дата </label>
+                <input type="text" name="nsdoc" id="nsdoc"/>
+            </td>
+            <td>
+                <label for="naklnom">№ Накладной</label>
+                <input type="text" name="naklnom" id="naklnom"/>
+            </td>
+            <td>
+                <label for="schnom">№ счета/договора</label>
+                <input type="text" name="schnom" id="schnom"/>
+           </td>
+            <td>
+                <label for="schnom2">№ счета/договора 2</label>
+                <input type="text" name="schnom2" id="schnom2"/>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+
+            </td>
+            <td>
+
+            </td>
+            <td>
+                <label for="nakldat">Дата</label>
+                <input type="text" name="nakldat" id="nakldat"/>
+            </td>
+            <td>
+                <label for="schdat">Дата счета/договора</label>
+                <input type="text" name="schdat" id="schdat"/>
+            </td>
+            <td>
+                <label for="schdat2">Дата счета/договора 2</label>
+                <input type="text" name="schdat2" id="schdat2"/>
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+
+
+    <label for="idgos">Идентификатор госзакупки</label>
+    <input type="text" name="idgos" id="idgos"/>
+
+
+    <hr/>
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Сохранить</button>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Отменить</button>
+</form>
+
+</body>
+</html>
